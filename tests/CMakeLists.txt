@@ -17,7 +17,8 @@ else()
 endif()
 
 add_executable(PaperRockScissorsTests
-    MoveTest.cpp)
+    MoveTest.cpp
+    RulesTest.cpp)
 target_link_libraries(PaperRockScissorsTests PRIVATE PaperRockScissorsLib GTest::gmock_main)
 prs_set_compile_options(PaperRockScissorsTests)
 

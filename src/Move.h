@@ -6,7 +6,7 @@
 #include <string>
 #include <string_view>
 
-namespace prs {
+namespace imc {
 
 // A hand shown by a player: a fist, an open hand, or index and middle finger.
 enum class Move { Rock, Paper, Scissors };
@@ -23,4 +23,4 @@ std::string normalize(std::string_view text);
 
 std::ostream& operator<<(std::ostream& out, Move move);
 
-}  // namespace prs
+}  // namespace imc

@@ -5,7 +5,7 @@
 
 #include "Move.h"
 
-namespace prs {
+namespace imc {
 namespace {
 
 TEST(MoveTest, HasANameForEveryMove) {
@@ -55,4 +55,4 @@ TEST(ParseMoveTest, RejectsEverythingElse) {
 }
 
 }  // namespace
-}  // namespace prs
+}  // namespace imc

@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <ostream>
 
-namespace prs {
+namespace imc {
 namespace {
 
 constexpr std::string_view kWhitespace = " \t\r\n";
@@ -47,4 +47,4 @@ std::optional<Move> parseMove(std::string_view text) {
 
 std::ostream& operator<<(std::ostream& out, Move move) { return out << toString(move); }
 
-}  // namespace prs
+}  // namespace imc
