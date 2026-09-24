@@ -1,0 +1,11 @@
+# Build output (command line, Visual Studio, CLion)
+/build*/
+/out/
+/cmake-build-*/
+
+# IDE settings
+/.vs/
+/.vscode/
+/.idea/
+*.user
+CMakeUserPresets.json
