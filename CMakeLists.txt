@@ -23,8 +23,12 @@ endfunction()
 
 # The game logic is a library, so the game and the unit tests are built from the same code.
 add_library(PaperRockScissorsLib STATIC
+    src/Game.cpp
+    src/Game.h    
     src/Move.cpp
     src/Move.h
+    src/Player.cpp
+    src/Player.h
     src/Rules.cpp
     src/Rules.h)
 target_include_directories(PaperRockScissorsLib PUBLIC src)
