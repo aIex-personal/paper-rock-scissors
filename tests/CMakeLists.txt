@@ -16,15 +16,16 @@ else()
     FetchContent_MakeAvailable(googletest)
 endif()
 
-add_executable(PaperRockScissorsTests
+add_executable(assignment-IMCTests
+    ConsoleAppTest.cpp    
     GameTest.cpp    
     MoveTest.cpp
     PlayerTest.cpp
     RulesTest.cpp
     TestHelpers.h)
-target_link_libraries(PaperRockScissorsTests PRIVATE PaperRockScissorsLib GTest::gmock_main)
-prs_set_compile_options(PaperRockScissorsTests)
+target_link_libraries(assignment-IMCTests PRIVATE assignment-IMClib GTest::gmock_main)
+prs_set_compile_options(assignment-IMCTests)
 
 # Registers every test with CTest, so they show up in Visual Studio's Test Explorer and `ctest`.
 include(GoogleTest)
-gtest_discover_tests(PaperRockScissorsTests)
+gtest_discover_tests(assignment-IMCTests)

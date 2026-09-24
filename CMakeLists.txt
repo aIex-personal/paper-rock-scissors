@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16...3.31)
 
-project(PaperRockScissors
+project(assignment-IMC
     VERSION 1.0.0
     DESCRIPTION "Paper-Rock-Scissors console game: a player against the computer"
     LANGUAGES CXX)
@@ -22,7 +22,9 @@ function(prs_set_compile_options target)
 endfunction()
 
 # The game logic is a library, so the game and the unit tests are built from the same code.
-add_library(PaperRockScissorsLib STATIC
+add_library(assignment-IMClib STATIC
+    src/ConsoleApp.cpp
+    src/ConsoleApp.h
     src/Game.cpp
     src/Game.h    
     src/Move.cpp
@@ -31,15 +33,15 @@ add_library(PaperRockScissorsLib STATIC
     src/Player.h
     src/Rules.cpp
     src/Rules.h)
-target_include_directories(PaperRockScissorsLib PUBLIC src)
-prs_set_compile_options(PaperRockScissorsLib)
+target_include_directories(assignment-IMClib PUBLIC src)
+prs_set_compile_options(assignment-IMClib)
 
-#add_executable(PaperRockScissors src/main.cpp)
-#target_link_libraries(PaperRockScissors PRIVATE PaperRockScissorsLib)
-#prs_set_compile_options(PaperRockScissors)
+add_executable(assignment-IMC src/main.cpp)
+target_link_libraries(assignment-IMC PRIVATE assignment-IMClib)
+prs_set_compile_options(assignment-IMC)
 
 # Makes the game the startup project when a Visual Studio solution (.sln) is generated.
-#set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT PaperRockScissors)
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT assignment-IMC)
 
 if(PRS_BUILD_TESTS)
     enable_testing()
