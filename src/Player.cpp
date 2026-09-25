@@ -9,6 +9,7 @@ namespace {
 
 constexpr std::string_view kPrompt = "Choose your move - [r]ock, [p]aper, [s]cissors or [q]uit: ";
 
+// Expects normalized input, so "Q" and " Quit " are recognized too.
 bool isQuitCommand(const std::string& input) { return input == "q" || input == "quit"; }
 
 }  // namespace
@@ -18,10 +19,11 @@ HumanPlayer::HumanPlayer(std::string name, std::istream& in, std::ostream& out)
 
 std::optional<Move> HumanPlayer::chooseMove() {
     std::string line;
+    // Keep asking until the person types a move, quits, or the input ends.
     while (true) {
         out_ << kPrompt;
         if (!std::getline(in_, line)) {
-            // The input ended: Ctrl+Z on Windows, Ctrl+D on Linux and macOS.
+            // The input ended
             return std::nullopt;
         }
         if (const std::optional<Move> move = parseMove(line)) {
@@ -34,6 +36,8 @@ std::optional<Move> HumanPlayer::chooseMove() {
     }
 }
 
+// std::random_device gives a different seed on each run, so the computer's moves can't be
+// predicted from one game to the next.
 ComputerPlayer::ComputerPlayer(std::string name)
     : ComputerPlayer(std::move(name), std::random_device{}()) {}
 

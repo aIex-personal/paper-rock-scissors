@@ -7,14 +7,14 @@
 
 namespace imc {
 
-// What both players showed in one round, and how it ended for the first player.
+/// What both players showed in one round, and how it ended for the first player.
 struct RoundResult {
     Move firstMove;
     Move secondMove;
     Outcome outcome;
 };
 
-// How many rounds each player has won, counted from the first player's side.
+/// How many rounds each player has won, counted from the first player's side.
 struct Score {
     int firstPlayerWins = 0;
     int secondPlayerWins = 0;
@@ -24,8 +24,8 @@ struct Score {
     Outcome overallOutcome() const;
 };
 
-// Plays rounds between two players and keeps the score. It has no input or output of its own,
-// so the same game works behind a console, a user interface or a test.
+/// Plays rounds between two players and keeps the score. It has no input or output of its own,
+/// so the same game works behind a console, a user interface or a test.
 class Game {
 public:
     // The players must live longer than the game; it only refers to them.

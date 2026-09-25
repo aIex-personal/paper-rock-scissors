@@ -6,7 +6,8 @@
 namespace imc {
 namespace {
 
-// The rule that covers both moves, or nullptr when no rule does (both players showed the same).
+// Finds the rule that applies to the two moves, whichever of them won. Returns nullptr when no
+// rule applies, which with the current rules only happens when both moves are the same.
 const Rule* findRule(Move move, Move opponentMove) {
     const auto rule = std::find_if(kRules.begin(), kRules.end(), [&](const Rule& candidate) {
         return (candidate.winner == move && candidate.loser == opponentMove) ||
@@ -30,10 +31,12 @@ std::string describe(Move move, Move opponentMove) {
     if (rule == nullptr) {
         return {};
     }
+    // Always written from the winner's side, e.g. "Rock blunts Scissors", never "Scissors ...".
     return std::string(toString(rule->winner)) + ' ' + std::string(rule->verb) + ' ' +
            std::string(toString(rule->loser));
 }
 
+// Only reached with an invalid enum value.
 std::ostream& operator<<(std::ostream& out, Outcome outcome) {
     switch (outcome) {
         case Outcome::Win: return out << "Win";

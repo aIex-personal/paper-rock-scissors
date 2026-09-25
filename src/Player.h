@@ -11,8 +11,8 @@
 
 namespace imc {
 
-// A player of the game. This is the Strategy pattern: Game asks for a move without knowing
-// whether a person, the computer or a test is answering. No move means "I stop playing".
+/// A player of the game. This is the Strategy pattern: Game asks for a move without knowing
+/// whether a person, the computer or a test is answering. No move means "I stop playing".
 class Player {
 public:
     explicit Player(std::string name) : name_(std::move(name)) {}
@@ -22,15 +22,17 @@ public:
     Player(const Player&) = delete;
     Player& operator=(const Player&) = delete;
 
+    /// The name shown in the round results and the score, e.g. "You" or "Computer".
     const std::string& name() const { return name_; }
-
+    /// The move for the next round, or std::nullopt when the player stops playing.
     virtual std::optional<Move> chooseMove() = 0;
 
 private:
     std::string name_;
 };
 
-// Asks the person at the console, and asks again after invalid input.
+/// Asks the person at the console, and asks again after invalid input.
+/// The streams are injected so tests can use string streams instead of a real console.
 class HumanPlayer final : public Player {
 public:
     HumanPlayer(std::string name, std::istream& in, std::ostream& out);
@@ -49,6 +51,7 @@ public:
     // Fixed seed: the same moves every run, which makes the tests repeatable.
     ComputerPlayer(std::string name, std::uint32_t seed);
 
+    /// Always returns a move the computer never stops playing on its own.
     std::optional<Move> chooseMove() override;
 
 private:
